@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dex R. Rael — Virtual Assistant & Creative Specialist</title>
+<meta name="description" content="Virtual Assistant skilled in graphic design, video editing, GHL automation, and social media management. Based in the Philippines." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080C14;
+    --bg2: #0E1420;
+    --bg3: #151C2C;
+    --card: #111827;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --cyan: #00D4E0;
+    --yellow: #FFD233;
+    --cyan-dim: rgba(0,212,224,0.12);
+    --yellow-dim: rgba(255,210,51,0.1);
+    --text: #F0F4FF;
+    --muted: #7A8BA8;
+    --muted2: #4A5A72;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(8,12,20,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px; font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--cyan); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--cyan);
+    color: #080C14;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px; font-weight: 700;
+    padding: 0.45rem 1.1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 60px; left: 0; right: 0;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    z-index: 49;
+    flex-direction: column; gap: 1rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--muted); text-decoration: none;
+    font-size: 15px; font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-menu a:last-child { border-bottom: none; color: var(--cyan); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 80px 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(0,212,224,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(255,210,51,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 900px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--cyan-dim);
+    border: 1px solid rgba(0,212,224,0.2);
+    border-radius: 2rem;
+    padding: 5px 14px;
+    font-size: 12px; font-weight: 500;
+    color: var(--cyan);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name .accent { color: var(--cyan); }
+  .hero-role {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+  .hero-desc {
+    font-size: 15px; color: var(--muted);
+    line-height: 1.7; margin-bottom: 2rem;
+    max-width: 420px;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--cyan);
+    color: #080C14;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px; font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,224,0.25); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px; font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border2);
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--cyan); background: var(--cyan-dim); }
+
+  /* PHOTO CARD */
+  .hero-photo-wrap {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .photo-card {
+    position: relative;
+    width: 280px; height: 340px;
+  }
+  .photo-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 1.5rem;
+    background: linear-gradient(135deg, var(--cyan), var(--yellow), transparent);
+    z-index: 0;
+    opacity: 0.5;
+  }
+  .photo-inner {
+    position: relative; z-index: 1;
+    width: 100%; height: 100%;
+    background: var(--bg3);
+    border-radius: 1.4rem;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .photo-placeholder {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--yellow));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px; font-weight: 800;
+    color: #080C14;
+    margin-bottom: 1rem;
+  }
+  .photo-hint { font-size: 12px; color: var(--muted2); text-align: center; padding: 0 1.5rem; }
+  .photo-tag {
+    position: absolute; bottom: -12px; right: -12px;
+    background: var(--yellow);
+    color: #080C14;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px; font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 2rem;
+    z-index: 2;
+    letter-spacing: 0.04em;
+  }
+  .stats-row {
+    display: flex; gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px; font-weight: 800;
+    color: var(--cyan);
+  }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* SECTIONS COMMON */
+  section { padding: 5rem 1.5rem; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 0.75rem;
+  }
+  .section-tag::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--cyan);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .section-sub { font-size: 15px; color: var(--muted); max-width: 520px; }
+
+  /* SERVICES */
+  #services { background: var(--bg2); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-top: 2.5rem;
+  }
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.1rem;
+    padding: 1.5rem;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: default;
+  }
+  .service-card:hover {
+    border-color: var(--cyan);
+    transform: translateY(-4px);
+  }
+  .svc-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--cyan-dim);
+    border: 1px solid rgba(0,212,224,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem; font-size: 20px;
+  }
+  .svc-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px; font-weight: 700;
+    margin-bottom: 0.4rem; color: var(--text);
+  }
+  .svc-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* EXPERIENCE */
+  .exp-timeline { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 16px; }
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.1rem;
+    padding: 1.4rem 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    transition: border-color 0.2s;
+  }
+  .exp-card:hover { border-color: var(--border2); }
+  .exp-card.current { border-color: rgba(0,212,224,0.25); }
+  .exp-line {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0;
+    padding-top: 4px;
+  }
+  .exp-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--muted2);
+    flex-shrink: 0;
+  }
+  .exp-card.current .exp-dot { background: var(--cyan); box-shadow: 0 0 0 3px var(--cyan-dim); }
+  .exp-company {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px; font-weight: 700; color: var(--text);
+    margin-bottom: 3px;
+  }
+  .exp-period {
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .current-badge {
+    display: inline-block;
+    background: rgba(0,212,224,0.12);
+    color: var(--cyan);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 20px;
+    margin-left: 8px; vertical-align: middle;
+  }
+  .exp-roles { display: flex; flex-wrap: wrap; gap: 6px; }
+  .role-tag {
+    font-size: 11px; font-weight: 500;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    padding: 3px 10px; border-radius: 20px;
+  }
+
+  /* TOOLS */
+  #tools { background: var(--bg2); }
+  .tools-cats { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .tools-cat-label {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted2); margin-bottom: 10px;
+  }
+  .tools-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tool-pill {
+    font-size: 13px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 6px 14px; border-radius: 2rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tool-pill:hover { border-color: var(--cyan); color: var(--text); }
+
+  /* CERTIFICATIONS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px; margin-top: 2.5rem;
+  }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    display: flex; gap: 12px; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: var(--yellow); }
+  .cert-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border-radius: 10px;
+    background: var(--yellow-dim);
+    border: 1px solid rgba(255,210,51,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .cert-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--text); line-height: 1.3;
+  }
+  .cert-type { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* CONTACT */
+  #contact { background: var(--bg); }
+  .contact-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px; font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .contact-info p { font-size: 14px; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+  .contact-items { display: flex; flex-direction: column; gap: 10px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--muted);
+  }
+  .contact-item-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+  }
+  .contact-item a { color: var(--cyan); text-decoration: none; }
+
+  /* BOOKING FORM */
+  .booking-form { display: flex; flex-direction: column; gap: 12px; }
+  .form-group label {
+    display: block;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 0.65rem 0.9rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--cyan); }
+  .form-group select option { background: #151C2C; }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .submit-btn {
+    width: 100%;
+    background: var(--cyan);
+    color: #080C14;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px; font-weight: 700;
+    padding: 0.8rem;
+    border-radius: 2rem;
+    border: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 4px;
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,224,0.25); }
+  .success-msg {
+    display: none;
+    text-align: center; padding: 2rem 1rem;
+  }
+  .success-check {
+    width: 60px; height: 60px;
+    background: var(--cyan-dim);
+    border: 1px solid rgba(0,212,224,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin: 0 auto 1rem;
+  }
+  .success-msg h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .success-msg p { font-size: 13px; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  footer p { font-size: 12px; color: var(--muted2); }
+  footer span { color: var(--cyan); }
+
+  /* SCROLL ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    .hero-photo-wrap { order: -1; }
+    .photo-card { width: 200px; height: 240px; }
+    .photo-placeholder { width: 64px; height: 64px; font-size: 20px; }
+    .hero-desc { margin: 0 auto 2rem; }
+    .hero-btns { justify-content: center; }
+    .stats-row { justify-content: center; }
+    .contact-wrap { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-badge { justify-content: center; display: inline-flex; }
+  }
+  @media (max-width: 480px) {
+    section { padding: 3.5rem 1rem; }
+    .contact-wrap { padding: 1.5rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">dex<span>.</span>rael</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Call</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#tools" onclick="closeMenu()">Tools</a>
+  <a href="#certifications" onclick="closeMenu()">Certifications</a>
+  <a href="#contact" onclick="closeMenu()">Book a Discovery Call →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-content fade-up">
+      <div class="hero-badge">Available for Projects</div>
+      <h1 class="hero-name">Dex R.<br><span class="accent">Rael</span></h1>
+      <p class="hero-role">Virtual Assistant & Creative Specialist</p>
+      <p class="hero-desc">Creative and detail-oriented professional skilled in graphic design, video editing, GHL automation, and social media management — helping brands grow with clarity and consistency.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">📅 Book a Discovery Call</a>
+        <a href="#services" class="btn-secondary">View Services →</a>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Companies Served</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">18+</div>
+          <div class="stat-label">Tools Mastered</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo-wrap fade-up" style="transition-delay:0.15s">
+      <div class="photo-card">
+        <div class="photo-inner">
+          <img src="profile_phot_for_portfolio.svg" alt="Dex R. Rael" style="width:100%; height:100%; object-fit:cover; object-position:center top; border-radius:1.4rem; position:absolute; inset:0;" />
+        </div>
+        <div class="photo-tag">📍 San Mateo, Rizal PH</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-tag">What I Do</div>
+      <h2 class="section-title">Services I Offer</h2>
+      <p class="section-sub">End-to-end creative and automation support so your brand looks great and runs smoothly.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="svc-icon">🎨</div>
+        <div class="svc-name">Graphic Design</div>
+        <div class="svc-desc">Brand visuals, social media graphics, and marketing materials using Photoshop, Illustrator & Canva.</div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.08s">
+        <div class="svc-icon">🎬</div>
+        <div class="svc-name">Video Editing</div>
+        <div class="svc-desc">Engaging video content with CapCut and Filmora — crafted to captivate your audience.</div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.12s">
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-name">GHL Automation</div>
+        <div class="svc-desc">Lead capture, follow-up sequences, and CRM pipelines inside GoHighLevel to grow revenue on autopilot.</div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.16s">
+        <div class="svc-icon">📱</div>
+        <div class="svc-name">Social Media Management</div>
+        <div class="svc-desc">Content planning, scheduling, and community engagement to build your digital presence.</div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.2s">
+        <div class="svc-icon">🌐</div>
+        <div class="svc-name">Web Design</div>
+        <div class="svc-desc">Clean, conversion-focused websites on WordPress and Squarespace — no coding needed on your end.</div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.24s">
+        <div class="svc-icon">🛠️</div>
+        <div class="svc-name">IT Support</div>
+        <div class="svc-desc">Technical assistance, software troubleshooting, and smooth setup of digital tools for your team.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-tag">Track Record</div>
+      <h2 class="section-title">Work Experience</h2>
+      <p class="section-sub">Hands-on experience across creative, automation, and community roles in international organizations.</p>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-card current fade-up">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div>
+          <div class="exp-company">Helpful Property Group <span class="current-badge">Current</span></div>
+          <div class="exp-period">2025 – Present</div>
+          <div class="exp-roles">
+            <span class="role-tag">GHL Specialist</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-card fade-up">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div>
+          <div class="exp-company">The Luxury Property Forum</div>
+          <div class="exp-period">2024 – 2025</div>
+          <div class="exp-roles">
+            <span class="role-tag">Graphic Designer</span>
+            <span class="role-tag">Video Editor</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-card fade-up">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div>
+          <div class="exp-company">Awaken 2 Business</div>
+          <div class="exp-period">2023 – 2025</div>
+          <div class="exp-roles">
+            <span class="role-tag">Graphic Designer</span>
+            <span class="role-tag">Video Editor</span>
+            <span class="role-tag">IT Assistant</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-card fade-up">
+        <div class="exp-line"><div class="exp-dot"></div></div>
+        <div>
+          <div class="exp-company">Aerial Insights Ltd</div>
+          <div class="exp-period">2023 – 2024</div>
+          <div class="exp-roles">
+            <span class="role-tag">Community Manager</span>
+            <span class="role-tag">Graphic Designer</span>
+            <span class="role-tag">Video Editor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-tag">Tech Stack</div>
+      <h2 class="section-title">Tools & Platforms</h2>
+      <p class="section-sub">A versatile toolkit built across design, video, automation, and project management.</p>
+    </div>
+    <div class="tools-cats fade-up">
+      <div>
+        <div class="tools-cat-label">Design & Video</div>
+        <div class="tools-pills">
+          <span class="tool-pill">Adobe Photoshop</span>
+          <span class="tool-pill">Adobe Illustrator</span>
+          <span class="tool-pill">Adobe Lightroom</span>
+          <span class="tool-pill">Canva</span>
+          <span class="tool-pill">CapCut</span>
+          <span class="tool-pill">Wondershare Filmora</span>
+        </div>
+      </div>
+      <div>
+        <div class="tools-cat-label">Automation & CRM</div>
+        <div class="tools-pills">
+          <span class="tool-pill">GoHighLevel</span>
+          <span class="tool-pill">Mailchimp</span>
+          <span class="tool-pill">ActiveCampaign</span>
+          <span class="tool-pill">ClickFunnels</span>
+          <span class="tool-pill">Fasthosts</span>
+        </div>
+      </div>
+      <div>
+        <div class="tools-cat-label">Web & Content</div>
+        <div class="tools-pills">
+          <span class="tool-pill">WordPress</span>
+          <span class="tool-pill">Squarespace</span>
+          <span class="tool-pill">Loomly</span>
+          <span class="tool-pill">StreamYard</span>
+          <span class="tool-pill">OBS Studio</span>
+        </div>
+      </div>
+      <div>
+        <div class="tools-cat-label">Productivity & AI</div>
+        <div class="tools-pills">
+          <span class="tool-pill">Asana</span>
+          <span class="tool-pill">Trello</span>
+          <span class="tool-pill">Microsoft Office</span>
+          <span class="tool-pill">ChatGPT</span>
+          <span class="tool-pill">NordPass</span>
+          <span class="tool-pill">Cognito</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-tag">Credentials</div>
+      <h2 class="section-title">Trainings & Certifications</h2>
+      <p class="section-sub">Continuously learning to deliver better results for every client.</p>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card fade-up">
+        <div class="cert-icon">🏆</div>
+        <div>
+          <div class="cert-name">Foundation Virtual Assistant Assessment</div>
+          <div class="cert-type">Certification</div>
+        </div>
+      </div>
+      <div class="cert-card fade-up" style="transition-delay:0.08s">
+        <div class="cert-icon">🎨</div>
+        <div>
+          <div class="cert-name">Graphic Design</div>
+          <div class="cert-type">Certification</div>
+        </div>
+      </div>
+      <div class="cert-card fade-up" style="transition-delay:0.12s">
+        <div class="cert-icon">⚙️</div>
+        <div>
+          <div class="cert-name">Go High Level</div>
+          <div class="cert-type">Certification</div>
+        </div>
+      </div>
+      <div class="cert-card fade-up" style="transition-delay:0.16s">
+        <div class="cert-icon">📊</div>
+        <div>
+          <div class="cert-name">Deal Sourcing Assessment</div>
+          <div class="cert-type">Internship Certification</div>
+        </div>
+      </div>
+      <div class="cert-card fade-up" style="transition-delay:0.2s">
+        <div class="cert-icon">📱</div>
+        <div>
+          <div class="cert-name">Virtual Digital Marketing Course</div>
+          <div class="cert-type">Course Completion</div>
+        </div>
+      </div>
+      <div class="cert-card fade-up" style="transition-delay:0.24s">
+        <div class="cert-icon">🏠</div>
+        <div>
+          <div class="cert-name">Property Management & Service Accommodation</div>
+          <div class="cert-type">Internship Program</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-tag">Let's Work Together</div>
+      <h2 class="section-title">Book a Discovery Call</h2>
+      <p class="section-sub">Ready to talk about your project? Fill out the form and I'll get back to you within 24 hours.</p>
+    </div>
+    <div class="contact-wrap fade-up">
+      <div class="contact-info">
+        <h3>Get In Touch</h3>
+        <p>Whether you need a graphic designer, video editor, GHL specialist, or all of the above — let's figure out how I can help your business grow.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <a href="mailto:raeldex1@gmail.com">raeldex1@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <span>(+63) 956 033 9715</span>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">💬</div>
+            <span>WhatsApp: (+63) 963 265 1409</span>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <span>San Mateo, Rizal, Philippines</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="booking-form" id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" id="fname" placeholder="Juan dela Cruz" />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="femail" placeholder="you@email.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Service Interested In</label>
+            <select id="fservice">
+              <option value="">Select a service...</option>
+              <option>Graphic Design</option>
+              <option>Video Editing</option>
+              <option>GHL Automation</option>
+              <option>Social Media Management</option>
+              <option>Web Design</option>
+              <option>IT Support</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Schedule</label>
+            <input type="text" id="fschedule" placeholder="e.g. Weekdays, 10am–12nn PHT" />
+          </div>
+          <div class="form-group">
+            <label>Tell me about your project</label>
+            <textarea id="fmessage" placeholder="Brief description of what you need help with..."></textarea>
+          </div>
+          <button class="submit-btn" onclick="submitForm()">Send Request →</button>
+        </div>
+        <div class="success-msg" id="successMsg">
+          <div class="success-check">✓</div>
+          <h3>Request Sent!</h3>
+          <p>Thanks! I'll reach out to <strong id="confirmedEmail" style="color:var(--cyan)"></strong> within 24 hours to confirm your discovery call.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Dex R. Rael</span> · Virtual Assistant & Creative Specialist · San Mateo, Rizal, Philippines</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Scroll animations
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Form submit
+function submitForm() {
+  var name = document.getElementById('fname').value.trim();
+  var email = document.getElementById('femail').value.trim();
+  if (!name || !email) {
+    alert('Please enter your name and email to continue.');
+    return;
+  }
+  document.getElementById('confirmedEmail').textContent = email;
+  document.getElementById('bookingForm').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+}
+</script>
+</body>
+</html>
