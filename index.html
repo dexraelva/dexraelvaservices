@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dex R. Rael — Virtual Assistant & Digital Specialist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #16161f;
+      --border: #ffffff0f;
+      --accent: #00e5ff;
+      --accent2: #7b61ff;
+      --accent-glow: #00e5ff22;
+      --text: #f0f0f8;
+      --muted: #7a7a9a;
+      --white: #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 6vw;
+      background: #0a0a0fcc;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800; font-size: 1.15rem;
+      letter-spacing: 0.05em; color: var(--white);
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.04em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: #000;
+      padding: 0.55rem 1.3rem; border-radius: 6px;
+      font-size: 0.82rem; font-weight: 700;
+      text-decoration: none; letter-spacing: 0.04em;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 10rem 6vw 6rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(circle, #00e5ff18 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 4rem; align-items: center;
+      max-width: 1100px; width: 100%;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent-glow);
+      border: 1px solid #00e5ff33; color: var(--accent);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem;
+    }
+    .hero-tag::before { content: '●'; font-size: 0.5rem; animation: blink 1.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.02em; margin-bottom: 1.2rem;
+    }
+    h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 540px; margin-bottom: 2.2rem; font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: #000;
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; letter-spacing: 0.03em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 24px #00e5ff44;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px #00e5ff66; }
+    .btn-secondary {
+      border: 1px solid var(--border); color: var(--text);
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-weight: 500; font-size: 0.9rem;
+      text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-photo-wrap {
+      position: relative; width: 260px; height: 300px; flex-shrink: 0;
+    }
+    .hero-photo-wrap::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2)); z-index: 0;
+    }
+    .hero-photo {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%; border-radius: 19px;
+      object-fit: cover; display: flex;
+      align-items: center; justify-content: center;
+      background: var(--surface2); overflow: hidden;
+    }
+    .photo-initials {
+      font-family: 'Poppins', sans-serif;
+      font-size: 4rem; font-weight: 800; color: var(--accent); line-height: 1;
+      text-align: center;
+    }
+    .photo-note { font-size: 0.7rem; color: var(--muted); margin-top: 0.5rem; text-align: center; }
+
+    /* SECTIONS */
+    section { padding: 6rem 6vw; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    .section-intro { color: var(--muted); font-size: 1rem; max-width: 520px; margin-bottom: 3rem; font-weight: 300; }
+
+    /* SERVICES */
+    #services { background: var(--surface); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+    .service-card:hover { border-color: #00e5ff44; transform: translateY(-4px); }
+    .service-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card:hover::after { opacity: 1; }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .service-card h3 {
+      font-family: 'Poppins', sans-serif; font-size: 1.1rem;
+      font-weight: 600; margin-bottom: 0.6rem;
+    }
+    .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    .card-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.2rem; font-size: 0.78rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .card-cta::after { content: '→'; }
+    .service-card:hover .card-cta { gap: 0.7rem; }
+
+    /* EXPERIENCE */
+    #experience { background: var(--bg); }
+    .timeline { position: relative; max-width: 800px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+    .timeline-item {
+      padding-left: 2.5rem; margin-bottom: 3rem; position: relative;
+      cursor: pointer;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -5px; top: 6px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--accent); box-shadow: 0 0 12px var(--accent);
+      transition: box-shadow 0.2s;
+    }
+    .timeline-item:hover::before { box-shadow: 0 0 20px var(--accent); }
+    .timeline-company {
+      display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.3rem;
+    }
+    .timeline-company h3 { font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 600; }
+    .timeline-date {
+      font-size: 0.75rem; color: var(--accent);
+      background: var(--accent-glow); border: 1px solid #00e5ff22;
+      padding: 0.2rem 0.7rem; border-radius: 100px;
+      font-weight: 600; letter-spacing: 0.06em;
+    }
+    .timeline-role {
+      font-size: 0.82rem; font-weight: 500; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+    }
+    .timeline-desc { font-size: 0.9rem; color: var(--muted); font-weight: 300; }
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+    .tag {
+      font-size: 0.72rem; background: var(--surface2);
+      border: 1px solid var(--border); color: var(--muted);
+      padding: 0.2rem 0.7rem; border-radius: 100px;
+    }
+    .exp-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1rem; font-size: 0.78rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .exp-cta::after { content: '→'; }
+    .timeline-item:hover .exp-cta { gap: 0.7rem; }
+
+    /* TOOLS */
+    #tools { background: var(--surface); }
+    .tools-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; }
+    .tools-group h3 {
+      font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    .tools-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .tool-chip {
+      background: var(--bg); border: 1px solid var(--border); color: var(--text);
+      font-size: 0.8rem; padding: 0.35rem 0.85rem; border-radius: 8px; transition: border-color 0.2s;
+    }
+    .tool-chip:hover { border-color: var(--accent); }
+
+    /* CERTS */
+    #certs { background: var(--bg); }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .cert-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.6rem 1.8rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .cert-card:hover { border-color: #7b61ff55; transform: translateY(-3px); }
+    .cert-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .cert-card p { font-size: 0.88rem; color: var(--muted); font-weight: 400; line-height: 1.5; }
+    .cert-card strong { display: block; color: var(--text); font-weight: 600; font-size: 0.92rem; margin-bottom: 0.2rem; }
+
+    /* CONTACT */
+    #contact { background: var(--surface); text-align: center; }
+    .cta-box { max-width: 600px; margin: 0 auto; }
+    .cta-box h2 { margin-bottom: 1rem; }
+    .cta-box p { color: var(--muted); margin-bottom: 2rem; font-weight: 300; }
+    .contact-details {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .contact-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--muted); }
+    .contact-item a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .contact-item a:hover { color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 6vw;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--muted);
+    }
+    footer span { font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--white); }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(24px); animation: fadeUp 0.7s forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .fade-in:nth-child(1){animation-delay:0.1s}
+    .fade-in:nth-child(2){animation-delay:0.2s}
+    .fade-in:nth-child(3){animation-delay:0.3s}
+    .fade-in:nth-child(4){animation-delay:0.4s}
+    .fade-in:nth-child(5){animation-delay:0.5s}
+
+    /* ===== MODAL / DETAIL PAGE ===== */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(5,5,10,0.92);
+      backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1; pointer-events: all;
+    }
+    .modal-panel {
+      background: var(--surface);
+      border: 1px solid #ffffff1a;
+      border-radius: 24px;
+      max-width: 680px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(32px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .modal-overlay.active .modal-panel {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s, color 0.2s;
+    }
+    .modal-close:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+    .modal-top-bar {
+      display: flex; align-items: center; gap: 1.2rem; margin-bottom: 2rem;
+    }
+    .modal-icon-wrap {
+      width: 60px; height: 60px; border-radius: 16px;
+      background: var(--accent-glow); border: 1px solid #00e5ff22;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; flex-shrink: 0;
+    }
+    .modal-title-group {}
+    .modal-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .modal-panel h2 {
+      font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0;
+    }
+    .modal-divider {
+      height: 1px; background: var(--border); margin: 1.5rem 0;
+    }
+    .modal-section-title {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem;
+    }
+    .modal-body p {
+      font-size: 0.93rem; color: var(--muted); font-weight: 300; line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .modal-body ul {
+      list-style: none; display: flex; flex-direction: column; gap: 0.55rem;
+      margin-bottom: 1.2rem;
+    }
+    .modal-body ul li {
+      font-size: 0.88rem; color: var(--muted); font-weight: 300;
+      display: flex; align-items: flex-start; gap: 0.6rem;
+    }
+    .modal-body ul li::before {
+      content: '▸'; color: var(--accent); font-size: 0.7rem; margin-top: 0.25rem; flex-shrink: 0;
+    }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+    .modal-tag {
+      font-size: 0.75rem; background: var(--accent-glow);
+      border: 1px solid #00e5ff22; color: var(--accent);
+      padding: 0.25rem 0.8rem; border-radius: 100px; font-weight: 500;
+    }
+    .modal-date-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 100px; padding: 0.35rem 1rem;
+      font-size: 0.78rem; color: var(--muted); font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+    .modal-date-badge span { color: var(--accent); }
+
+    /* Cert modal special */
+    .cert-highlight {
+      background: var(--surface2); border: 1px solid #7b61ff33;
+      border-radius: 12px; padding: 1.2rem 1.5rem;
+      margin-bottom: 1rem; display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .cert-highlight .cert-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .cert-highlight-body {}
+    .cert-highlight-body strong { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .cert-highlight-body span { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 4vw; }
+      .nav-links { display: none; }
+      #hero { padding: 8rem 4vw 4rem; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { width: 160px; height: 185px; margin: 0 auto; }
+      section { padding: 4rem 4vw; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .modal-panel { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">DEX<span>.</span>RAEL</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#certs">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="YOUR_CALENDLY_LINK_HERE" target="_blank" class="nav-cta">Book a Call</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag fade-in">Available for Projects</div>
+        <h1 class="fade-in">Dex R. <span>Rael</span></h1>
+        <p class="hero-sub fade-in">
+          Virtual Assistant &amp; Digital Specialist — helping brands grow through automation, compelling visuals, and smart social media systems.
+        </p>
+        <div class="hero-btns fade-in">
+          <a href="YOUR_CALENDLY_LINK_HERE" target="_blank" class="btn-primary">Book a Discovery Call</a>
+          <a href="#experience" class="btn-secondary">View My Work</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap fade-in">
+        <div class="hero-photo">
+          <!--
+            TO ADD YOUR PHOTO:
+            Replace this entire <div> block with:
+            <img src="your-photo.jpg" alt="Dex R. Rael" style="width:100%;height:100%;object-fit:cover;border-radius:19px;" />
+          -->
+          <div>
+            <div class="photo-initials">DR</div>
+            <p class="photo-note">Add your photo here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">What I Do</p>
+    <h2>Services I Offer</h2>
+    <p class="section-intro">From automation to design to content — I handle the digital work so you can focus on growing your business.</p>
+    <div class="services-grid">
+
+      <div class="service-card" onclick="openServiceModal('ghl')">
+        <span class="service-icon">⚙️</span>
+        <h3>GHL Specialist</h3>
+        <p>I design, build, and manage GoHighLevel automation systems that capture leads, follow up consistently, and convert more prospects — with less manual effort.</p>
+        <span class="card-cta">View Details</span>
+      </div>
+
+      <div class="service-card" onclick="openServiceModal('design')">
+        <span class="service-icon">🎨</span>
+        <h3>Graphic Design</h3>
+        <p>Visually compelling graphics crafted for social media, marketing, and brand communication — bringing concepts and ideas to life with creativity and precision.</p>
+        <span class="card-cta">View Details</span>
+      </div>
+
+      <div class="service-card" onclick="openServiceModal('video')">
+        <span class="service-icon">🎬</span>
+        <h3>Video Editing</h3>
+        <p>Reels, promotional videos, and social content — edited with a keen eye for detail and storytelling that captivates and keeps audiences engaged.</p>
+        <span class="card-cta">View Details</span>
+      </div>
+
+      <div class="service-card" onclick="openServiceModal('smm')">
+        <span class="service-icon">📱</span>
+        <h3>Social Media Management</h3>
+        <p>Strategic content creation, scheduling, and community engagement to build and nurture your brand's online presence across platforms.</p>
+        <span class="card-cta">View Details</span>
+      </div>
+
+      <div class="service-card" onclick="openServiceModal('tech')">
+        <span class="service-icon">🖥️</span>
+        <h3>Technical Support</h3>
+        <p>Troubleshooting, software setup, and IT assistance to keep your digital operations running smoothly without the headaches.</p>
+        <span class="card-cta">View Details</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Work History</p>
+    <h2>Experience</h2>
+    <p class="section-intro">A track record of delivering results across property, business, mortgage, and media industries.</p>
+    <div class="timeline">
+
+      <div class="timeline-item" onclick="openExpModal('helpful')">
+        <div class="timeline-company">
+          <h3>Helpful Property Group</h3>
+          <span class="timeline-date">2025 – Present</span>
+        </div>
+        <p class="timeline-role">GHL Specialist</p>
+        <p class="timeline-desc">Designing, building, and managing GoHighLevel automation systems to help the business capture leads, follow up consistently, and convert more prospects with less manual effort.</p>
+        <div class="timeline-tags">
+          <span class="tag">GoHighLevel</span>
+          <span class="tag">Automation</span>
+          <span class="tag">CRM</span>
+          <span class="tag">Lead Generation</span>
+        </div>
+        <span class="exp-cta">Read More</span>
+      </div>
+
+      <div class="timeline-item" onclick="openExpModal('answer4')">
+        <div class="timeline-company">
+          <h3>Answer 4 Business</h3>
+          <span class="timeline-date">2024 – 2025</span>
+        </div>
+        <p class="timeline-role">Virtual Assistant · 1-Year Contract</p>
+        <p class="timeline-desc">Full virtual assistant engagement focused on social media management, graphic design, and video editing — creating consistent, on-brand content that supported the company's digital growth.</p>
+        <div class="timeline-tags">
+          <span class="tag">SMM</span>
+          <span class="tag">Graphic Design</span>
+          <span class="tag">Video Editing</span>
+        </div>
+        <span class="exp-cta">Read More</span>
+      </div>
+
+      <div class="timeline-item" onclick="openExpModal('luxury')">
+        <div class="timeline-company">
+          <h3>The Luxury Property Forum</h3>
+          <span class="timeline-date">2024 – 2025</span>
+        </div>
+        <p class="timeline-role">Graphic Designer &amp; Video Editor</p>
+        <p class="timeline-desc">Created high-quality visual and video content aligned with the brand's premium positioning, supporting their digital marketing and community-facing communications.</p>
+        <div class="timeline-tags">
+          <span class="tag">Graphic Design</span>
+          <span class="tag">Video Editing</span>
+          <span class="tag">Luxury Brand</span>
+        </div>
+        <span class="exp-cta">Read More</span>
+      </div>
+
+      <div class="timeline-item" onclick="openExpModal('mortgage')">
+        <div class="timeline-company">
+          <h3>Simple Fast Mortgage</h3>
+          <span class="timeline-date">2024 · 4 Months</span>
+        </div>
+        <p class="timeline-role">Virtual Assistant — Social Media &amp; Design</p>
+        <p class="timeline-desc">Produced social media graphics and video content for a mortgage brand, helping communicate their services clearly and attractively to a wider online audience.</p>
+        <div class="timeline-tags">
+          <span class="tag">Social Media Graphics</span>
+          <span class="tag">Video</span>
+          <span class="tag">Finance Brand</span>
+        </div>
+        <span class="exp-cta">Read More</span>
+      </div>
+
+      <div class="timeline-item" onclick="openExpModal('wedding')">
+        <div class="timeline-company">
+          <h3>The Wedding Society</h3>
+          <span class="timeline-date">2024 · 4 Months</span>
+        </div>
+        <p class="timeline-role">Virtual Assistant — Graphics &amp; Reels</p>
+        <p class="timeline-desc">Created graphics and video reels tailored for social media — capturing the warmth and elegance of a wedding brand and growing audience engagement through visual storytelling.</p>
+        <div class="timeline-tags">
+          <span class="tag">Graphic Design</span>
+          <span class="tag">Reels</span>
+          <span class="tag">Social Media</span>
+        </div>
+        <span class="exp-cta">Read More</span>
+      </div>
+
+      <div class="timeline-item" onclick="openExpModal('awaken')">
+        <div class="timeline-company">
+          <h3>Awaken 2 Business</h3>
+          <span class="timeline-date">2023 – 2025</span>
+        </div>
+        <p class="timeline-role">Graphic Designer · Video Editor · IT Assistant</p>
+        <p class="timeline-desc">A multi-role engagement covering visual design, video production, and technical support — ensuring smooth IT operations while delivering compelling brand content.</p>
+        <div class="timeline-tags">
+          <span class="tag">Graphic Design</span>
+          <span class="tag">Video Editing</span>
+          <span class="tag">IT Support</span>
+        </div>
+        <span class="exp-cta">Read More</span>
+      </div>
+
+      <div class="timeline-item" onclick="openExpModal('aerial')">
+        <div class="timeline-company">
+          <h3>Aerial Insights Ltd</h3>
+          <span class="timeline-date">2023 – 2024</span>
+        </div>
+        <p class="timeline-role">Community Manager · Graphic Designer · Video Editor</p>
+        <p class="timeline-desc">Managed digital community engagement while producing graphics and video content — building meaningful connections between the brand and its growing online audience.</p>
+        <div class="timeline-tags">
+          <span class="tag">Community Management</span>
+          <span class="tag">Graphic Design</span>
+          <span class="tag">Video</span>
+        </div>
+        <span class="exp-cta">Read More</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <p class="section-label">Tech Stack</p>
+    <h2>Tools &amp; Software</h2>
+    <p class="section-intro">The tools I use daily to deliver quality work, fast.</p>
+    <div class="tools-groups">
+      <div class="tools-group">
+        <h3>Design &amp; Video</h3>
+        <div class="tools-list">
+          <span class="tool-chip">Adobe Photoshop</span>
+          <span class="tool-chip">Adobe Illustrator</span>
+          <span class="tool-chip">Adobe Lightroom</span>
+          <span class="tool-chip">Canva</span>
+          <span class="tool-chip">CapCut</span>
+          <span class="tool-chip">Wondershare Filmora</span>
+        </div>
+      </div>
+      <div class="tools-group">
+        <h3>Automation &amp; CRM</h3>
+        <div class="tools-list">
+          <span class="tool-chip">GoHighLevel</span>
+          <span class="tool-chip">Active Campaigns</span>
+          <span class="tool-chip">Mailchimp</span>
+          <span class="tool-chip">Click Funnels</span>
+          <span class="tool-chip">Cognito</span>
+        </div>
+      </div>
+      <div class="tools-group">
+        <h3>Web &amp; Content</h3>
+        <div class="tools-list">
+          <span class="tool-chip">WordPress</span>
+          <span class="tool-chip">Squarespace</span>
+          <span class="tool-chip">Fasthosts</span>
+          <span class="tool-chip">Loomly</span>
+          <span class="tool-chip">StreamYard</span>
+          <span class="tool-chip">OBS Studio</span>
+        </div>
+      </div>
+      <div class="tools-group">
+        <h3>Productivity &amp; Ops</h3>
+        <div class="tools-list">
+          <span class="tool-chip">Asana</span>
+          <span class="tool-chip">Trello</span>
+          <span class="tool-chip">Microsoft Office</span>
+          <span class="tool-chip">NordPass</span>
+          <span class="tool-chip">ChatGPT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certs">
+    <p class="section-label">Credentials</p>
+    <h2>Trainings &amp; Certifications</h2>
+    <p class="section-intro">Continuous learning is part of how I stay sharp and deliver more value.</p>
+    <div class="certs-grid">
+
+      <div class="cert-card" onclick="openCertModal('propmanage')">
+        <span class="cert-icon">📋</span>
+        <div>
+          <strong>Property Management</strong>
+          <p>Internship Certification</p>
+        </div>
+      </div>
+
+      <div class="cert-card" onclick="openCertModal('dealsource')">
+        <span class="cert-icon">🏅</span>
+        <div>
+          <strong>Deal Sourcing</strong>
+          <p>Assessment &amp; Internship Certification</p>
+        </div>
+      </div>
+
+      <div class="cert-card" onclick="openCertModal('serviceacc')">
+        <span class="cert-icon">📋</span>
+        <div>
+          <strong>Serviced Accommodation</strong>
+          <p>Internship Certification</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="cta-box">
+      <p class="section-label">Let's Work Together</p>
+      <h2>Ready to Build Something?</h2>
+      <p>Whether you need automation, design, or a full digital assistant — I'm open to new projects. Let's talk about what you need.</p>
+      <a href="YOUR_CALENDLY_LINK_HERE" target="_blank" class="btn-primary" style="display:inline-block;">Book a Discovery Call</a>
+      <div class="contact-details">
+        <div class="contact-item">
+          <span>📧</span>
+          <a href="mailto:raeldex1@gmail.com">raeldex1@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span>📞</span>
+          <a href="tel:+639560339715">(+63) 956 033 9715</a>
+        </div>
+        <div class="contact-item">
+          <span>💬</span>
+          <a href="https://wa.me/639632651409" target="_blank">WhatsApp</a>
+        </div>
+        <div class="contact-item">
+          <span>📍</span>
+          <span>San Mateo, Rizal, Philippines</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>Dex R. Rael</span>. All rights reserved.</p>
+    <p>Designed with purpose.</p>
+  </footer>
+
+  <!-- ===== MODAL OVERLAY ===== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal-panel" id="modalPanel">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // ---- DATA ----
+
+    const serviceData = {
+      ghl: {
+        icon: '⚙️',
+        label: 'Service',
+        title: 'GHL Specialist',
+        intro: 'GoHighLevel is one of the most powerful all-in-one marketing and CRM platforms available today — and I specialize in building it out fully so your business runs on autopilot.',
+        whatIdo: [
+          'Build complete CRM pipelines and opportunity stages tailored to your sales process',
+          'Design and implement automated follow-up sequences (email, SMS, voicemail drops)',
+          'Create high-converting landing pages and funnels inside GHL',
+          'Set up lead capture forms and integrate them with your existing tools',
+          'Configure calendars, booking flows, and appointment reminders',
+          'Build custom reporting dashboards so you can track what matters',
+          'Onboard your team and document workflows for smooth handover',
+        ],
+        whyIt: 'Most businesses lose leads simply because they don\'t follow up fast enough or consistently enough. A properly built GHL system changes that — leads are captured, nurtured, and moved through your pipeline automatically, 24/7.',
+        tags: ['GoHighLevel', 'CRM', 'Automation', 'Lead Generation', 'Funnels', 'Email Marketing', 'SMS Campaigns'],
+      },
+      design: {
+        icon: '🎨',
+        label: 'Service',
+        title: 'Graphic Design',
+        intro: 'Great design is more than aesthetics — it\'s communication. I create visuals that tell your brand\'s story clearly, memorably, and with intention.',
+        whatIdo: [
+          'Social media graphics (posts, stories, carousels, covers)',
+          'Brand identity assets: logos, color palettes, brand guides',
+          'Marketing materials: flyers, banners, digital ads',
+          'Presentation decks and pitch materials',
+          'Email newsletter templates',
+          'Thumbnail design for YouTube and video content',
+        ],
+        whyIt: 'Consistent, high-quality visuals build trust and recognition. Whether you\'re growing a personal brand or scaling a business, strong design is what makes people stop scrolling and pay attention.',
+        tags: ['Adobe Photoshop', 'Adobe Illustrator', 'Canva', 'Brand Design', 'Social Media Graphics', 'Marketing Collateral'],
+      },
+      video: {
+        icon: '🎬',
+        label: 'Service',
+        title: 'Video Editing',
+        intro: 'Video is the most engaging content format online. I edit videos that hold attention, communicate your message clearly, and drive action.',
+        whatIdo: [
+          'Short-form content: Instagram Reels, TikToks, YouTube Shorts',
+          'Long-form: YouTube videos, webinar recordings, brand videos',
+          'Promo and ad videos for products or services',
+          'Podcast and interview video editing',
+          'Motion graphics and animated text overlays',
+          'Color grading and audio cleanup',
+        ],
+        whyIt: 'Raw footage is just raw potential. Good editing transforms it into content people actually watch, share, and remember — that\'s what moves the needle for your brand.',
+        tags: ['CapCut', 'Wondershare Filmora', 'Reels', 'Video Production', 'Short-Form Content', 'Motion Graphics'],
+      },
+      smm: {
+        icon: '📱',
+        label: 'Service',
+        title: 'Social Media Management',
+        intro: 'Growing on social media takes consistency, strategy, and creativity. I manage all of that so your brand stays active, relevant, and engaging — without you lifting a finger.',
+        whatIdo: [
+          'Content planning and editorial calendar management',
+          'Caption writing and hashtag research',
+          'Graphic and video content creation for posts',
+          'Scheduling and publishing across platforms',
+          'Community management: responding to comments and DMs',
+          'Monthly performance reporting and insights',
+        ],
+        whyIt: 'Most business owners know they should be active on social media but don\'t have the time or bandwidth to do it well. I take the full workload off your plate and deliver consistent, on-brand content that builds your audience over time.',
+        tags: ['Instagram', 'Facebook', 'LinkedIn', 'TikTok', 'Loomly', 'Content Strategy', 'Community Management'],
+      },
+      tech: {
+        icon: '🖥️',
+        label: 'Service',
+        title: 'Technical Support',
+        intro: 'Behind every smooth-running digital operation is solid technical support. I handle the setup, troubleshooting, and maintenance that keeps your business moving.',
+        whatIdo: [
+          'Software installation, configuration, and updates',
+          'Account setup and integration (email, tools, platforms)',
+          'Website maintenance on WordPress and Squarespace',
+          'Password management and access control',
+          'Diagnosing and resolving common tech issues',
+          'Setting up project management tools (Asana, Trello)',
+        ],
+        whyIt: 'Tech problems are expensive — in time, money, and stress. Having reliable IT support means faster resolution, less downtime, and one less thing on your plate.',
+        tags: ['WordPress', 'Squarespace', 'Microsoft Office', 'NordPass', 'IT Troubleshooting', 'Systems Setup'],
+      },
+    };
+
+    const expData = {
+      helpful: {
+        icon: '🏢',
+        company: 'Helpful Property Group',
+        date: '2025 – Present',
+        role: 'GHL Specialist',
+        overview: 'Currently working with Helpful Property Group to architect and manage their full GoHighLevel ecosystem — building automation systems that capture leads and move them through the sales pipeline efficiently.',
+        responsibilities: [
+          'Designed and built custom CRM pipelines aligned with their property sales process',
+          'Implemented multi-channel automated follow-up sequences (email + SMS)',
+          'Created landing pages and lead capture forms for inbound campaigns',
+          'Configured appointment booking and reminder automations',
+          'Ongoing management, optimization, and reporting of all GHL systems',
+        ],
+        outcome: 'Reduced manual follow-up time significantly while improving lead response rates and pipeline visibility.',
+        tags: ['GoHighLevel', 'Automation', 'CRM', 'Lead Generation', 'Property Industry'],
+      },
+      answer4: {
+        icon: '💼',
+        company: 'Answer 4 Business',
+        date: '2024 – 2025',
+        role: 'Virtual Assistant · 1-Year Contract',
+        overview: 'A full-year virtual assistant engagement where I served as the digital backbone of their content and social media operations — handling everything from graphic creation to video editing and scheduling.',
+        responsibilities: [
+          'Managed day-to-day social media content across multiple platforms',
+          'Designed branded graphics and marketing materials in Canva and Photoshop',
+          'Edited and produced short-form and long-form video content',
+          'Maintained content calendar and ensured on-time publishing',
+          'Supported general VA tasks including admin and communications',
+        ],
+        outcome: 'Delivered consistent, high-quality digital content throughout the engagement, strengthening the brand\'s online presence and audience engagement.',
+        tags: ['Social Media Management', 'Graphic Design', 'Video Editing', 'VA', 'Content Creation'],
+      },
+      luxury: {
+        icon: '🏆',
+        company: 'The Luxury Property Forum',
+        date: '2024 – 2025',
+        role: 'Graphic Designer & Video Editor',
+        overview: 'Produced premium visual and video content for a luxury property community platform — maintaining the brand\'s high-end positioning through consistently polished design work.',
+        responsibilities: [
+          'Created social media graphics and branded visual assets aligned with their premium aesthetic',
+          'Edited video content for events, promotional campaigns, and digital marketing',
+          'Ensured all deliverables met the brand\'s luxury positioning and visual standards',
+          'Collaborated remotely with the marketing team to align on content direction',
+        ],
+        outcome: 'Contributed to a consistent, high-quality content output that reflected the prestige of the Luxury Property Forum brand.',
+        tags: ['Graphic Design', 'Video Editing', 'Luxury Brand', 'Property', 'Premium Content'],
+      },
+      mortgage: {
+        icon: '🏠',
+        company: 'Simple Fast Mortgage',
+        date: '2024 · 4 Months',
+        role: 'Virtual Assistant — Social Media & Design',
+        overview: 'A focused short-term engagement supporting a mortgage company\'s digital content needs — creating graphics and video content that made their financial services more approachable and visible online.',
+        responsibilities: [
+          'Designed social media graphics explaining mortgage products in a clear, visual way',
+          'Produced video content for social platforms including promotional clips',
+          'Maintained brand consistency across all content deliverables',
+          'Delivered content on schedule to support ongoing social media activity',
+        ],
+        outcome: 'Helped the brand establish a more active and professional social media presence within the competitive finance sector.',
+        tags: ['Social Media', 'Graphic Design', 'Video', 'Finance', 'Mortgage Brand'],
+      },
+      wedding: {
+        icon: '💍',
+        company: 'The Wedding Society',
+        date: '2024 · 4 Months',
+        role: 'Virtual Assistant — Graphics & Reels',
+        overview: 'Created visual content and video reels for a wedding brand — capturing the elegance and emotion of the wedding industry through social media-first design and storytelling.',
+        responsibilities: [
+          'Designed graphics capturing the warmth and aesthetic of a premium wedding brand',
+          'Edited Instagram and TikTok reels tailored for high audience engagement',
+          'Ensured all content aligned with the brand\'s soft, elegant visual identity',
+          'Contributed to growing social media engagement through compelling visual storytelling',
+        ],
+        outcome: 'Delivered content that resonated with the wedding audience, driving engagement and reinforcing the brand\'s aspirational identity online.',
+        tags: ['Graphic Design', 'Reels', 'Social Media', 'Video Editing', 'Wedding Industry'],
+      },
+      awaken: {
+        icon: '⚡',
+        company: 'Awaken 2 Business',
+        date: '2023 – 2025',
+        role: 'Graphic Designer · Video Editor · IT Assistant',
+        overview: 'A long-term multi-role engagement where I wore several hats — handling both creative output and technical operations to keep the business running smoothly.',
+        responsibilities: [
+          'Designed visual content and marketing materials for ongoing brand campaigns',
+          'Produced and edited video content for social media and internal use',
+          'Provided IT support: software setup, troubleshooting, systems maintenance',
+          'Managed access and credentials using NordPass for secure operations',
+          'Supported broader VA tasks as needed across teams',
+        ],
+        outcome: 'A versatile, trusted contributor across creative and technical functions over a two-year period.',
+        tags: ['Graphic Design', 'Video Editing', 'IT Support', 'VA', 'Multi-Role'],
+      },
+      aerial: {
+        icon: '🚁',
+        company: 'Aerial Insights Ltd',
+        date: '2023 – 2024',
+        role: 'Community Manager · Graphic Designer · Video Editor',
+        overview: 'Managed the brand\'s digital community while producing all visual and video content — bridging engagement and creative production in a single role.',
+        responsibilities: [
+          'Managed online community interactions, comments, and DMs across social platforms',
+          'Created graphics and branded visual content aligned with their identity',
+          'Edited video content for digital marketing and community-facing campaigns',
+          'Developed community engagement strategies to grow and retain the audience',
+        ],
+        outcome: 'Strengthened the brand\'s community relationships and online presence through consistent, quality content and active audience engagement.',
+        tags: ['Community Management', 'Graphic Design', 'Video Editing', 'Social Media', 'Digital Marketing'],
+      },
+    };
+
+    const certData = {
+      propmanage: {
+        icon: '📋',
+        label: 'Internship Certification',
+        title: 'Property Management',
+        overview: 'Completed an internship certification in Property Management — gaining hands-on training in managing residential and commercial properties effectively.',
+        highlights: [
+          'Understanding property operations, maintenance, and tenant management',
+          'Handling administrative tasks related to property portfolios',
+          'Exposure to real-world property management workflows and tools',
+          'Training in communication with landlords, tenants, and agencies',
+        ],
+        relevance: 'This certification underpins my work with property clients, giving me foundational industry knowledge that makes me a more effective VA in the property sector.',
+      },
+      dealsource: {
+        icon: '🏅',
+        label: 'Assessment & Internship Certification',
+        title: 'Deal Sourcing',
+        overview: 'Earned both an assessment certification and internship certification in Deal Sourcing — covering the strategies and processes used to identify, evaluate, and present investment property deals.',
+        highlights: [
+          'Understanding the deal sourcing process from lead identification to presentation',
+          'Evaluating property investment opportunities and calculating returns',
+          'Building and maintaining relationships with investors and agents',
+          'Compliance, ethics, and best practices in property deal sourcing',
+        ],
+        relevance: 'Provides a strong foundation for supporting property investors and deal sourcers as a VA — from research and admin to lead management and CRM systems.',
+      },
+      serviceacc: {
+        icon: '📋',
+        label: 'Internship Certification',
+        title: 'Serviced Accommodation',
+        overview: 'Completed an internship in Serviced Accommodation — learning the operational and business aspects of running short-term rental properties and SA businesses.',
+        highlights: [
+          'Operations of serviced accommodation: setup, pricing, and guest management',
+          'Marketing SA properties on platforms like Airbnb and Booking.com',
+          'Managing bookings, check-ins, and property turnovers',
+          'Financial tracking and optimizing occupancy rates',
+        ],
+        relevance: 'Directly applicable to supporting SA operators as a VA — whether managing listings, handling guest communications, or running automation workflows.',
+      },
+    };
+
+    // ---- MODAL LOGIC ----
+
+    function openServiceModal(key) {
+      const d = serviceData[key];
+      if (!d) return;
+      document.getElementById('modalContent').innerHTML = `
+        <div class="modal-top-bar">
+          <div class="modal-icon-wrap">${d.icon}</div>
+          <div class="modal-title-group">
+            <p class="modal-label">${d.label}</p>
+            <h2>${d.title}</h2>
+          </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+          <p class="modal-section-title">Overview</p>
+          <p>${d.intro}</p>
+          <p class="modal-section-title">What I Deliver</p>
+          <ul>${d.whatIdo.map(i => `<li>${i}</li>`).join('')}</ul>
+          <p class="modal-section-title">Why It Matters</p>
+          <p>${d.whyIt}</p>
+          <p class="modal-section-title">Tools & Skills</p>
+          <div class="modal-tags">${d.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}</div>
+        </div>
+      `;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openExpModal(key) {
+      const d = expData[key];
+      if (!d) return;
+      document.getElementById('modalContent').innerHTML = `
+        <div class="modal-top-bar">
+          <div class="modal-icon-wrap">${d.icon}</div>
+          <div class="modal-title-group">
+            <p class="modal-label">Work Experience</p>
+            <h2>${d.company}</h2>
+          </div>
+        </div>
+        <div class="modal-date-badge"><span>${d.date}</span> &nbsp;·&nbsp; ${d.role}</div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+          <p class="modal-section-title">Overview</p>
+          <p>${d.overview}</p>
+          <p class="modal-section-title">Key Responsibilities</p>
+          <ul>${d.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>
+          <p class="modal-section-title">Outcome</p>
+          <p>${d.outcome}</p>
+          <p class="modal-section-title">Skills & Tags</p>
+          <div class="modal-tags">${d.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}</div>
+        </div>
+      `;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openCertModal(key) {
+      const d = certData[key];
+      if (!d) return;
+      document.getElementById('modalContent').innerHTML = `
+        <div class="modal-top-bar">
+          <div class="modal-icon-wrap">${d.icon}</div>
+          <div class="modal-title-group">
+            <p class="modal-label">${d.label}</p>
+            <h2>${d.title}</h2>
+          </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-body">
+          <p class="modal-section-title">Overview</p>
+          <p>${d.overview}</p>
+          <p class="modal-section-title">What I Learned</p>
+          <ul>${d.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
+          <p class="modal-section-title">Relevance to My Work</p>
+          <p>${d.relevance}</p>
+        </div>
+      `;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>
